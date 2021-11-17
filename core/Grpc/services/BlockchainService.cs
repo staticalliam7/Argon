@@ -8,14 +8,21 @@ namespace GrpcService.Services
     public class BlockchainService : BChainService.BChainServiceBase
     {
 
-        public override Task<TrxResponse> GenesisBlock(EmptyRequest request, ServerCallContext context)
+        public override Task<BlockResponse> GenesisBlock(EmptyRequest request, ServerCallContext context)
         {
-            var blockObj = Blockchain.GetGenesisBlock();
-            var blockJson = JsonConvert.SerializeObject(blockObj, Formatting.Indented);
-
-            return Task.FromResult(new TrxResponse
+            var block = Blockchain.GetGenesisBlock();
+            BlockModel mdl = new BlockModel
             {
-                Result = blockJson
+                Height = block.Height,
+                Hash = block.Hash,
+                PrevHash = block.PrevHash,
+                TimeStamp = block.TimeStamp,
+                Transactions = block.Transactions
+            };
+
+            return Task.FromResult(new BlockResponse
+            {
+                Block = mdl
             });
         }
 
@@ -29,14 +36,20 @@ namespace GrpcService.Services
             });
         }
 
-        public override Task<TrxResponse> LastBlock(EmptyRequest request, ServerCallContext context)
+        public override Task<BlockResponse> LastBlock(EmptyRequest request, ServerCallContext context)
         {
-            var lastBlockObj = Blockchain.GetLastBlock();
-            var blockJson = JsonConvert.SerializeObject(lastBlockObj, Formatting.Indented);
-
-            return Task.FromResult(new TrxResponse
+            var block = Blockchain.GetLastBlock();
+            BlockModel mdl = new BlockModel
             {
-                Result = blockJson
+                Height = block.Height,
+                Hash = block.Hash,
+                PrevHash = block.PrevHash,
+                TimeStamp = block.TimeStamp,
+                Transactions = block.Transactions
+            };
+            return Task.FromResult(new BlockResponse
+            {
+                Block = mdl
             });
         }
 
@@ -69,6 +82,7 @@ namespace GrpcService.Services
             {
                 TrxModel mdl = new TrxModel
                 {
+                    TrxID = trx.ID,
                     Recipient = trx.Recipient,
                     Sender = trx.Sender,
                     Fee = trx.Fee,
@@ -102,11 +116,11 @@ namespace GrpcService.Services
                 return Task.FromResult(new TrxResponse
                 {
                     Result = "Transaction ID not valid"
-                });
+                });               
             }
+           
 
-
-            // Verify signature
+            // Verify signature   
             var trxValid = Transaction.VerifySignature(request.PublicKey, request.TrxId, request.TrxInput.Signature);
             if (!trxValid)
             {
@@ -122,9 +136,9 @@ namespace GrpcService.Services
             {
                 Result = "Success"
             });
-
+       
         }
 
-
+        
     }
 }

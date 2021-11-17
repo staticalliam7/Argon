@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "grpc-service": {
+      "commandName": "Project",
+      "applicationUrl": "http://*:5002;http://*:5004",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

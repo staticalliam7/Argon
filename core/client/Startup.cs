@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using UbudKusCoin.Sceduler;
+using Argon.Sceduler;
 
 namespace Main
 {
@@ -57,3 +57,4 @@ namespace Main
             });
         }
     }
+}

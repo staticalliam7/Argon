@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "KR3MYGFkDhTslftg5sebs9pM8pSYNt4tPIKiuZYz3NHoLaLgvCoEqvB3G3JXErMQ/Geqs+Lk0t0doLD8SWaF1A==",
+  "success": true,
+  "projectFilePath": "/home/runner/ArgonCrypt/Wallet/ConsoleWallet.csproj",
+  "expectedPackageFiles": [
+    "/home/runner/.nuget/packages/google.protobuf/3.14.0/google.protobuf.3.14.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/grpc.core.api/2.34.0/grpc.core.api.2.34.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/grpc.net.client/2.34.0/grpc.net.client.2.34.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/grpc.net.client.web/2.34.0/grpc.net.client.web.2.34.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/grpc.net.common/2.34.0/grpc.net.common.2.34.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/grpc.tools/2.35.0/grpc.tools.2.35.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.extensions.logging.abstractions/3.0.3/microsoft.extensions.logging.abstractions.3.0.3.nupkg.sha512",
+    "/home/runner/.nuget/packages/starkbank-ecdsa/1.2.1/starkbank-ecdsa.1.2.1.nupkg.sha512",
+    "/home/runner/.nuget/packages/system.diagnostics.diagnosticsource/4.5.1/system.diagnostics.diagnosticsource.4.5.1.nupkg.sha512",
+    "/home/runner/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
+    "/home/runner/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.2/system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+  ],
+  "logs": []
+}

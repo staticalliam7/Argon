@@ -1,20 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using Utils;
+using Newtonsoft.Json;
 
-namespace Models
+namespace Main
 {
 
     public class Block
     {
-        //public string ID {get; set;}
         public int Height { get; set; }
         public long TimeStamp { get; set; }
         public string PrevHash { get; set; }
         public string Hash { get; set; }
         public string Transactions { get; set; }
-
 
         public Block(Block lastBlock, string transactions)
         {
@@ -25,7 +24,17 @@ namespace Models
             PrevHash = lastHash;
             Transactions = transactions;
             Hash = GetHash(TimeStamp, lastHash, transactions);
-            //ID = Converter.ConvertToHexString(Converter.ConvertToBytes(Hash));
+        }
+
+        public Block(Block lastBlock)
+        {
+            var lastHeight = lastBlock.Height;
+            var lastHash = lastBlock.Hash;
+            Height = lastHeight + 1;
+            TimeStamp = DateTime.Now.Ticks;
+            PrevHash = lastHash;
+            Transactions = null;
+            Hash = GetHash(TimeStamp, lastHash, null);
         }
 
         public Block(int height, long timestamp, string lastHash, string hash, string transactions)
@@ -37,28 +46,26 @@ namespace Models
             Transactions = transactions;
         }
 
-
         /**
         Create genesis block
         **/
-        public static Block Genesis()
+        public static Block Genesis(string transactions)
         {
-            var ts = new DateTime(2019, 10, 24);
-            var genesisTrx = "Genesis Block created by P.Kusuma  on 2019 10 24";
-            var hash = GetHash(ts.Ticks, "-", genesisTrx);
-            //var block = new Block(1, ts.Ticks, Convert.ToBase64String(Encoding.ASCII.GetBytes("-")), hash, Convert.ToBase64String(Encoding.ASCII.GetBytes(genesisTrx)));
-            var block = new Block(1, ts.Ticks, Convert.ToBase64String(Encoding.ASCII.GetBytes("-")), hash, genesisTrx);
+            var ts = new DateTime(2020, 10, 24);
+            var hash = GetHash(ts.Ticks, "-", transactions);
+            var block = new Block(0, ts.Ticks, Convert.ToBase64String(Encoding.ASCII.GetBytes("-")), hash, transactions);
             return block;
         }
 
+
         public static string GetHash(long timestamp, string lastHash, string transactions)
         {
-            SHA256 sha256 = SHA256.Create();
             var strSum = timestamp + lastHash + transactions;
             byte[] sumBytes = Encoding.ASCII.GetBytes(strSum);
-            byte[] hashBytes = sha256.ComputeHash(sumBytes);
+            byte[] hashBytes = SHA256.Create().ComputeHash(sumBytes);
             return Convert.ToBase64String(hashBytes);
         }
+
 
     }
 }

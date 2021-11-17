@@ -957,11 +957,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/runner/ArgonCrypt/main.csproj",
+      "projectUniqueName": "/home/runner/ArgonCrypt/core/main.csproj",
       "projectName": "main",
-      "projectPath": "/home/runner/ArgonCrypt/main.csproj",
+      "projectPath": "/home/runner/ArgonCrypt/core/main.csproj",
       "packagesPath": "/home/runner/.nuget/packages/",
-      "outputPath": "/home/runner/ArgonCrypt/obj/",
+      "outputPath": "/home/runner/ArgonCrypt/core/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/runner/.nuget/NuGet/NuGet.Config"
