@@ -1,0 +1,2 @@
+obj/Debug/net5.0/Grpc/Protos/Bchain.cs \
+obj/Debug/net5.0/Grpc/Protos/BchainGrpc.cs: Grpc/Protos/bchain.proto
