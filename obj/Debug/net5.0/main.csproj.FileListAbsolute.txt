@@ -16,3 +16,4 @@
 /home/runner/ArgonCrypt/obj/Debug/net5.0/ref/main.dll
 /home/runner/ArgonCrypt/obj/Debug/net5.0/main.pdb
 /home/runner/ArgonCrypt/obj/Debug/net5.0/main.genruntimeconfig.cache
+/home/runner/ArgonCrypt/bin/Debug/net5.0/LiteDB.dll

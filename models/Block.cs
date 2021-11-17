@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Text;
 using Utils;
 
 namespace Models
@@ -8,42 +8,57 @@ namespace Models
 
     public class Block
     {
+        //public string ID {get; set;}
         public int Height { get; set; }
         public long TimeStamp { get; set; }
-        public byte[] PrevHash { get; set; }
-        public byte[] Hash { get; set; }
-        public Transaction[] Transactions { get; set; }
-        public string Creator { get; set; }
+        public string PrevHash { get; set; }
+        public string Hash { get; set; }
+        public string Transactions { get; set; }
 
-        public Block(int height, byte[] prevHash, List<Transaction> transactions, string creator)
+
+        public Block(Block lastBlock, string transactions)
+        {
+            var lastHeight = lastBlock.Height;
+            var lastHash = lastBlock.Hash;
+            Height = lastHeight + 1;
+            TimeStamp = DateTime.Now.Ticks;
+            PrevHash = lastHash;
+            Transactions = transactions;
+            Hash = GetHash(TimeStamp, lastHash, transactions);
+            //ID = Converter.ConvertToHexString(Converter.ConvertToBytes(Hash));
+        }
+
+        public Block(int height, long timestamp, string lastHash, string hash, string transactions)
         {
             Height = height;
-            PrevHash = prevHash;
-            TimeStamp = DateTime.Now.Ticks;
-            Transactions = transactions.ToArray();
-            Hash = GenerateHash();
-            Creator = creator;
+            TimeStamp = timestamp;
+            PrevHash = lastHash;
+            Hash = hash;
+            Transactions = transactions;
         }
 
-        public byte[] GenerateHash()
+
+        /**
+        Create genesis block
+        **/
+        public static Block Genesis()
         {
-            var sha = SHA256.Create();
-            byte[] timeStamp = BitConverter.GetBytes(TimeStamp);
-
-            var transactionHash = Transactions.ConvertToByte();
-
-            byte[] headerBytes = new byte[timeStamp.Length + PrevHash.Length + transactionHash.Length];
-
-            Buffer.BlockCopy(timeStamp, 0, headerBytes, 0, timeStamp.Length);
-            Buffer.BlockCopy(PrevHash, 0, headerBytes, timeStamp.Length, PrevHash.Length);
-            Buffer.BlockCopy(transactionHash, 0, headerBytes, timeStamp.Length + PrevHash.Length, transactionHash.Length);
-
-            byte[] hash = sha.ComputeHash(headerBytes);
-
-            return hash;
-
+            var ts = new DateTime(2019, 10, 24);
+            var genesisTrx = "Genesis Block created by P.Kusuma  on 2019 10 24";
+            var hash = GetHash(ts.Ticks, "-", genesisTrx);
+            //var block = new Block(1, ts.Ticks, Convert.ToBase64String(Encoding.ASCII.GetBytes("-")), hash, Convert.ToBase64String(Encoding.ASCII.GetBytes(genesisTrx)));
+            var block = new Block(1, ts.Ticks, Convert.ToBase64String(Encoding.ASCII.GetBytes("-")), hash, genesisTrx);
+            return block;
         }
 
+        public static string GetHash(long timestamp, string lastHash, string transactions)
+        {
+            SHA256 sha256 = SHA256.Create();
+            var strSum = timestamp + lastHash + transactions;
+            byte[] sumBytes = Encoding.ASCII.GetBytes(strSum);
+            byte[] hashBytes = sha256.ComputeHash(sumBytes);
+            return Convert.ToBase64String(hashBytes);
+        }
 
     }
 }

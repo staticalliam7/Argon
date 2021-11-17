@@ -1,6 +1,6 @@
-using Models;
-
+using System;
 using Client;
+using DB;
 
 namespace Main
 {
@@ -9,18 +9,21 @@ namespace Main
         static void Main()
         {
 
+            // Initilize db
+            DbAccess.Initialize();
+
+            /**
+             * remove all record in all table
+             * uncomment this if you want
+            **/
+             DbAccess.ClearDB();
+
             // Make blockchain
-            var bc = new Blockchain();
+            _ = new Blockchain();
 
             // show menu
-            var menu = new Menu(bc);
-            menu.DisplayMenu(bc);
-
-
+            Menu.DisplayMenu();
         }
-
-        
-
     }
 
 

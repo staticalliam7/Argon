@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6PvxyP5p42jah+Fk1qNTDhiIPbdNEpnSdH5JLIQdRCis6Q5MX+1WL0b6zW4CDANVJp5De0v0EDZkt5n6WOyx/w==",
+  "dgSpecHash": "2izb+zV3+55evk9FqH4stECXZVfZujDUMspc/itf/D8zr/+jHyHoLXiWaR5lUlJjL1lobxo6D5C1dZrIkw6BXA==",
   "success": true,
   "projectFilePath": "/home/runner/ArgonCrypt/main.csproj",
   "expectedPackageFiles": [
+    "/home/runner/.nuget/packages/litedb/5.0.9/litedb.5.0.9.nupkg.sha512",
     "/home/runner/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512"
   ],
   "logs": []
