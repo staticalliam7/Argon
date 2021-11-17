@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Build Core
-      run: dotnet build --project ./core/main.csproj
+      run: dotnet build  ./core/main.csproj
     - name: Build Wallet
-      run: dotnet build --project ./Wallet/ConsoleWallet.csproj
+      run: dotnet build  ./Wallet/ConsoleWallet.csproj
 
