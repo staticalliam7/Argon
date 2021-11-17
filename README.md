@@ -1,4 +1,4 @@
-![argon (1)](https://user-images.githubusercontent.com/63507206/142155483-f7c285ef-ca3c-4351-b824-820659593256.png)
+<center><img src="https://user-images.githubusercontent.com/63507206/142155483-f7c285ef-ca3c-4351-b824-820659593256.png" width = "1080"/></center>
 
 # Argon: The lightweight open-source cryptocurrency
 Based on [UbudKusCoin](https://github.com/jhonkus/UbudKusCoin), Argon is designed to be light and easy to use. 
